@@ -29,7 +29,7 @@
       - xqueue
       nginx_default_sites:
       - lms
-    - role: mysql
+    - mysql
     - edxlocal
     - role: mongo
       when: "'localhost' in EDXAPP_MONGO_HOSTS"
