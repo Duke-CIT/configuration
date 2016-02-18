@@ -10,6 +10,7 @@
     ENABLE_NEWRELIC: False
   roles:
     - aws
+    - security
     - mysql
     - edxlocal
     - analytics_api
