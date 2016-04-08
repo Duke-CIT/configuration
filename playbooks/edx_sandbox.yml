@@ -20,6 +20,8 @@
     COMMON_ENABLE_SPLUNKFORWARDER: False
   roles:
     - { role: swapfile, SWAPFILE_SIZE: "2GB" }
+    - security
+    - aws
     - role: nginx
       nginx_sites:
       - certs
@@ -29,7 +31,7 @@
       - xqueue
       nginx_default_sites:
       - lms
-    - role: mysql
+    - mysql
     - edxlocal
     - role: mongo
       when: "'localhost' in EDXAPP_MONGO_HOSTS"

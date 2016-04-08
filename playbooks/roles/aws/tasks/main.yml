@@ -82,6 +82,13 @@
     dest={{ aws_s3cmd }}
     state=link
 
+- name: create s3cmd configuration
+  template: >
+    src=edx/etc/.s3cfg.j2
+    dest=/edx/etc/.s3cfg
+    owner=root group=root mode=0644
+  when: AWS_S3_LOGS
+
 - name: create s3 log sync script
   template: >
     dest={{ aws_s3_sync_script }}
