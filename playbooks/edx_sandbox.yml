@@ -51,7 +51,7 @@
       when: SANDBOX_ENABLE_ECOMMERCE
     - notifier
     - analytics_api
-    - insights
+    # bower errors: - insights
     # not ready yet: - edx_notes_api
     - demo
     - oauth_client_setup
