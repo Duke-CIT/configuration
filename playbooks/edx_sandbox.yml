@@ -61,7 +61,10 @@
       when: SANDBOX_ENABLE_ECOMMERCE
     - programs
     - analytics_api
-    - insights
+    # Disable "insights" role.
+    # It fails with a "bower dependency error", and we don't need Insights on our edxapp hosts
+    # because we run analytics on a separate instance.
+    # - insights
     # not ready yet: - edx_notes_api
     - demo
     - oauth_client_setup
