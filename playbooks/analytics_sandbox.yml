@@ -1,3 +1,10 @@
+- name: Bootstrap instance(s)
+  hosts: all
+  gather_facts: no
+  become: True
+  roles:
+    - python
+
 - name: Deploy analytics related services (except the pipeline)
   hosts: all
   become: True
