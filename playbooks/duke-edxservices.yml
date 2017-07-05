@@ -1,0 +1,27 @@
+---
+
+# Playbook for Duke Extend edxservices servers
+
+- name: Bootstrap instance(s)
+  hosts: all
+  gather_facts: no
+  become: True
+  roles:
+    - python
+
+- name: Configure instance(s)
+  hosts: all
+  become: True
+  gather_facts: True
+  vars:
+    migrate_db: "yes"
+  roles:
+    - role: swapfile
+      SWAPFILE_SIZE: 2GB
+    - role: rabbitmq
+      rabbitmq_ip: ''
+    - aws
+    - oraclejdk
+    - elasticsearch
+    - role: postfix_queue
+      when: POSTFIX_QUEUE_EXTERNAL_SMTP_HOST != ''
