@@ -1,0 +1,47 @@
+---
+
+# Playbook for Duke Extend edxapp servers
+
+- name: Bootstrap instance(s)
+  hosts: all
+  gather_facts: no
+  become: True
+  roles:
+    - python
+
+- name: Configure instance(s)
+  hosts: all
+  become: True
+  gather_facts: True
+  vars:
+    migrate_db: "yes"
+    SANDBOX_ENABLE_ANALYTICS_API: True
+  roles:
+    - role: swapfile
+      SWAPFILE_SIZE: 2GB
+    - role: nginx
+      nginx_sites:
+      - certs
+      - cms
+      - lms
+      - forum
+      - xqueue
+      nginx_default_sites:
+      - lms
+    - role: aws
+      when: EDXAPP_SETTINGS == 'aws'
+    - role: edxapp
+      celery_worker: True
+    - edxapp
+    - role: analytics_api
+      when: SANDBOX_ENABLE_ANALYTICS_API
+    - oauth_client_setup
+    - forum
+    - role: notifier
+      NOTIFIER_DIGEST_TASK_INTERVAL: 5
+    - role: xqueue
+      update_users: True
+    - certs
+    - edx_ansible
+    - role: postfix_queue
+      when: POSTFIX_QUEUE_EXTERNAL_SMTP_HOST != ''
