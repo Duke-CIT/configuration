@@ -15,7 +15,6 @@
   gather_facts: True
   vars:
     migrate_db: "yes"
-    SANDBOX_ENABLE_ANALYTICS_API: True
   roles:
     - role: swapfile
       SWAPFILE_SIZE: 2GB
@@ -33,8 +32,6 @@
     - role: edxapp
       celery_worker: True
     - edxapp
-    - role: analytics_api
-      when: SANDBOX_ENABLE_ANALYTICS_API
     - oauth_client_setup
     - forum
     - role: notifier
