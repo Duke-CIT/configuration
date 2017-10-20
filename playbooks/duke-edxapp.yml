@@ -32,7 +32,6 @@
     - role: edxapp
       celery_worker: True
     - edxapp
-    - oauth_client_setup
     - forum
     - role: notifier
       NOTIFIER_DIGEST_TASK_INTERVAL: 5
