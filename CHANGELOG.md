@@ -134,3 +134,6 @@
 - Role: Edxapp
   - Added EDXAPP_LMS_AUTH_EXTRA and EDXAPP_CMS_AUTH_EXTRA for passing unique AUTH_EXTRA configurations to the LMS and CMS.
     Both variables default to EDXAPP_AUTH_EXTRA for backward compatibility
+
+- Role: common_vars
+  - Added `COMMON_ENABLE_AWS_INTEGRATION` to run the `aws` role when enabled. Default: `False`.

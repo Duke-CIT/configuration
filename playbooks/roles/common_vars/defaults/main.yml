@@ -167,3 +167,8 @@ common_close_all_caches: |
         cache = django_cache.cache
         if hasattr(cache, 'close'):
             cache.close()
+
+# Set to True to install aws role when running edx_sandbox playbook.
+COMMON_ENABLE_AWS_INTEGRATION: False
+
+COMMON_OBJECT_STORE_LOG_SYNC_ON_EXIT: "{{ COMMON_BIN_DIR }}/sync-logs-on-exit"
